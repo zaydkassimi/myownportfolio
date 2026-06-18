@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { projects } from "@/data/portfolio";
+
 function BrowserMockup({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-white rounded-xl shadow-[0_2px_20px_-6px_rgba(0,0,0,0.08)] overflow-hidden border border-black/[0.04]">
@@ -17,17 +19,96 @@ function BrowserMockup({ children }: { children: React.ReactNode }) {
           <div className="h-5 bg-black/[0.03] rounded-md" />
         </div>
       </div>
-      <div className="aspect-[16/10] bg-[#f9f9f9] flex items-center justify-center">
+      <div className="aspect-[16/10] bg-[#f9f9f9] relative">
         {children}
       </div>
     </div>
   );
 }
 
+function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group cursor-pointer flex flex-col h-full"
+    >
+      <BrowserMockup>
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-[#1a1a1a]/8">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="m21 15-5-5L5 21" />
+            </svg>
+          </div>
+        )}
+      </BrowserMockup>
+
+      <div className="bg-[#1e1e1e] rounded-b-xl p-5 font-mono text-[13px] leading-[1.8] flex-1">
+        <p className="text-[#6a9955]">// {project.title}</p>
+        <p>
+          <span className="text-[#569cd6]">const</span>{" "}
+          <span className="text-[#4fc1ff]">project</span>{" "}
+          <span className="text-white">{"="}</span>{" "}
+          <span className="text-white">{"{"}</span>
+        </p>
+        <p className="pl-4">
+          <span className="text-[#9cdcfe]">type</span>
+          <span className="text-white">: </span>
+          <span className="text-[#ce9178]">&quot;{project.type}&quot;</span>
+          <span className="text-white">,</span>
+        </p>
+        <p className="pl-4">
+          <span className="text-[#9cdcfe]">year</span>
+          <span className="text-white">: </span>
+          <span className="text-[#b5cea8]">{project.year}</span>
+          <span className="text-white">,</span>
+        </p>
+        <p className="pl-4">
+          <span className="text-[#9cdcfe]">description</span>
+          <span className="text-white">: </span>
+          <span className="text-[#ce9178]">&quot;{project.description}&quot;</span>
+        </p>
+        <p>
+          <span className="text-white">{"}"}</span>
+          <span className="text-white">;</span>
+        </p>
+        <p className="mt-2">
+          <span className="text-[#569cd6]">const</span>{" "}
+          <span className="text-[#4fc1ff]">stack</span>{" "}
+          <span className="text-white">{"="}</span>{" "}
+          <span className="text-white">[</span>
+        </p>
+        <p className="pl-4">
+          {project.stack.map((tech, j) => (
+            <span key={tech}>
+              <span className="text-[#ce9178]">&quot;{tech}&quot;</span>
+              {j < project.stack.length - 1 && <span className="text-white">, </span>}
+            </span>
+          ))}
+        </p>
+        <p>
+          <span className="text-white">]</span>
+          <span className="text-white">;</span>
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen relative">
-      {/* Subtle dot pattern background */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.35]"
         style={{
@@ -38,7 +119,6 @@ export default function ProjectsPage() {
       />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 py-24 md:py-32">
-        {/* Back link */}
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
@@ -53,7 +133,6 @@ export default function ProjectsPage() {
           </Link>
         </motion.div>
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,65 +147,9 @@ export default function ProjectsPage() {
           </h1>
         </motion.div>
 
-        {/* Projects grid */}
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-10 items-stretch">
           {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <BrowserMockup>
-                <div className="w-full h-full flex items-center justify-center text-[#1a1a1a]/10">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <path d="m21 15-5-5L5 21" />
-                  </svg>
-                </div>
-              </BrowserMockup>
-
-              <div className="mt-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="px-2.5 py-0.5 text-[11px] font-bold text-white bg-[#1a1a1a] rounded-md">
-                    {project.year}
-                  </span>
-                  <span className="text-[13px] font-medium text-[#1a1a1a]/40">
-                    {project.institution} · {project.type}
-                  </span>
-                </div>
-                <h3 className="font-display text-xl font-bold text-[#1a1a1a] mb-2 group-hover:underline underline-offset-4">
-                  {project.title}
-                </h3>
-                <p className="text-[13px] text-[#1a1a1a]/45 leading-relaxed mb-4">
-                  {project.description}
-                </p>
-
-                {/* Highlights */}
-                <ul className="space-y-1.5 mb-4">
-                  {project.highlights.map((h, j) => (
-                    <li key={j} className="text-[12px] text-[#1a1a1a]/40 flex items-start gap-2">
-                      <span className="text-[#1a1a1a]/20 mt-0.5">→</span>
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-[11px] font-medium text-[#1a1a1a]/50 border border-[#1a1a1a]/10 rounded-md"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
       </div>

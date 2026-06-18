@@ -107,7 +107,7 @@ export default function Education() {
   return (
     <section id="education" className="relative py-28 md:py-40">
       {/* Wall background */}
-      <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-0 bg-[#f5f5f0]" />
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
