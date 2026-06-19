@@ -15,10 +15,10 @@ export default function ScrollRevealText() {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
-    <div ref={containerRef} className="relative w-full overflow-hidden">
+    <div ref={containerRef} className="relative w-full h-[180px] overflow-hidden flex items-end justify-center pb-0">
       <motion.p
         style={{ y, opacity }}
-        className="font-display text-[clamp(8rem,28vw,24rem)] font-black leading-none tracking-tighter text-center select-none text-white/[0.06]"
+        className="font-archivo-black text-[clamp(8rem,28vw,24rem)] font-normal leading-none tracking-tighter text-center select-none text-white/[0.06] whitespace-nowrap"
       >
         ZAYD
       </motion.p>

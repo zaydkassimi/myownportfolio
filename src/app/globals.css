@@ -68,7 +68,12 @@ body {
 
 /* Display font */
 .font-display {
-  font-family: var(--font-display, "Archivo", sans-serif);
+  font-family: var(--font-archivo, "Archivo", sans-serif);
+}
+
+/* Archivo Black font */
+.font-archivo-black {
+  font-family: var(--font-archivo-black, "Archivo Black", sans-serif);
 }
 
 /* Scrollbar */
@@ -143,4 +148,14 @@ body {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* Profile photo logo reveal */
+.profile-reveal {
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.group:hover .profile-reveal {
+  clip-path: circle(75% at 50% 50%);
 }

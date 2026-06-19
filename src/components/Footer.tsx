@@ -2,7 +2,7 @@
 
 import { contactInfo, navLinks } from "@/data/portfolio";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./Icons";
+import { GithubIcon, LinkedinIcon, XIcon, InstagramIcon, FacebookIcon } from "./Icons";
 import ScrollRevealText from "./ScrollRevealText";
 
 export default function Footer() {
@@ -83,6 +83,30 @@ export default function Footer() {
               >
                 <LinkedinIcon size={16} />
               </a>
+              <a
+                href={contactInfo.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
+                <XIcon size={14} />
+              </a>
+              <a
+                href={contactInfo.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
+                <InstagramIcon size={16} />
+              </a>
+              <a
+                href={contactInfo.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
+                <FacebookIcon size={16} />
+              </a>
             </div>
           </div>
         </div>
@@ -90,9 +114,6 @@ export default function Footer() {
 
       {/* Giant Name */}
       <ScrollRevealText />
-
-      {/* Bottom gradient line */}
-      <div className="h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600" />
     </footer>
   );
 }

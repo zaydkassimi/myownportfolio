@@ -76,7 +76,7 @@ export default function Contact() {
                 href={`mailto:${contactInfo.email}`}
                 className="flex items-center gap-4 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#1a1a1a]/[0.04] flex items-center justify-center group-hover:bg-[#1a1a1a]/[0.08] transition-colors">
+                <div className="w-12 h-12 rounded-full bg-[#1a1a1a]/[0.04] flex items-center justify-center group-hover:bg-[#1a1a1a]/[0.08] transition-colors">
                   <Mail size={18} className="text-[#1a1a1a]/40" />
                 </div>
                 <div>
@@ -89,22 +89,25 @@ export default function Contact() {
                 </div>
               </a>
 
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#1a1a1a]/[0.04] flex items-center justify-center">
+              <a
+                href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                className="flex items-center gap-4 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-[#1a1a1a]/[0.04] flex items-center justify-center group-hover:bg-[#1a1a1a]/[0.08] transition-colors">
                   <Phone size={18} className="text-[#1a1a1a]/40" />
                 </div>
                 <div>
                   <p className="text-[10px] text-[#1a1a1a]/25 uppercase tracking-wider mb-0.5">
                     Phone
                   </p>
-                  <p className="text-sm font-medium text-[#1a1a1a]/70">
+                  <p className="text-sm font-medium text-[#1a1a1a]/70 group-hover:text-[#1a1a1a] transition-colors">
                     {contactInfo.phone}
                   </p>
                 </div>
-              </div>
+              </a>
 
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#1a1a1a]/[0.04] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-[#1a1a1a]/[0.04] flex items-center justify-center">
                   <MapPin size={18} className="text-[#1a1a1a]/40" />
                 </div>
                 <div>

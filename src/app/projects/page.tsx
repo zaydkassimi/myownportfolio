@@ -32,9 +32,9 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group cursor-pointer flex flex-col h-full"
     >
-      <BrowserMockup>
+      <Link href={`/projects/${project.slug}`} className="group cursor-pointer flex flex-col h-full block">
+        <BrowserMockup>
         {project.image ? (
           <Image
             src={project.image}
@@ -102,6 +102,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
           <span className="text-white">;</span>
         </p>
       </div>
+      </Link>
     </motion.div>
   );
 }

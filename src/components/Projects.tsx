@@ -52,7 +52,7 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 gap-8 mb-12 items-stretch">
           {projects.slice(0, 2).map((project, i) => (
             <ScrollAnimation key={project.title} delay={i * 0.15}>
-              <div className="group cursor-pointer flex flex-col h-full">
+              <Link href={`/projects/${project.slug}`} className="group cursor-pointer flex flex-col h-full block">
                 <BrowserMockup>
                   {project.image ? (
                     <Image
@@ -121,7 +121,7 @@ export default function Projects() {
                     <span className="text-white">;</span>
                   </p>
                 </div>
-              </div>
+              </Link>
             </ScrollAnimation>
           ))}
         </div>
