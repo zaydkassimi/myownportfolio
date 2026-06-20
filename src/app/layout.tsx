@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   title: "Zayd Kassimi — Software Engineer",
   description:
     "Software engineer and full-stack developer building modern, scalable web experiences.",
+  icons: {
+    icon: "/icon.svg",
+  },
   keywords: [
     "portfolio",
     "développeur web",
