@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useCallback } from "react";
 import { Send, Mail, Phone, MapPin } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { contactInfo } from "@/data/portfolio";
+
+const RATE_LIMIT_MS = 60000; // 1 minute cooldown between submissions
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,13 +14,53 @@ export default function Contact() {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error" | "rate-limited">("idle");
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const lastSubmitTime = useRef<number>(0);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
+  const validate = () => {
+    const newErrors: { name?: string; email?: string; message?: string } = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (formData.name.length > 100) {
+      newErrors.name = "Name must be under 100 characters";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+    } else if (formData.email.length > 254) {
+      newErrors.email = "Email must be under 254 characters";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.length > 5000) {
+      newErrors.message = "Message must be under 5000 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    
+    // Rate limiting check
+    const now = Date.now();
+    if (now - lastSubmitTime.current < RATE_LIMIT_MS) {
+      setStatus("rate-limited");
+      setTimeout(() => setStatus("idle"), RATE_LIMIT_MS - (now - lastSubmitTime.current));
+      return;
+    }
+    
+    if (!validate()) return;
     setStatus("sending");
+    lastSubmitTime.current = now;
     setTimeout(() => {
       setStatus("sent");
       setFormData({ name: "", email: "", message: "" });
@@ -155,6 +197,7 @@ export default function Contact() {
                   <input
                     type="text"
                     required
+                    maxLength={100}
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -162,6 +205,9 @@ export default function Contact() {
                     className="w-full px-3 py-2 bg-[#2a2d2e] border border-[#3d3d3d] rounded-lg text-[#d4d4d4] placeholder:text-white/15 focus:outline-none focus:border-[#569cd6]/50 transition-colors text-sm font-mono"
                     placeholder='""'
                   />
+                  {errors.name && (
+                    <p className="text-[#f44747] text-xs mt-1">{errors.name}</p>
+                  )}
                 </div>
 
                 <div>
@@ -175,6 +221,7 @@ export default function Contact() {
                   <input
                     type="email"
                     required
+                    maxLength={254}
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -182,6 +229,9 @@ export default function Contact() {
                     className="w-full px-3 py-2 bg-[#2a2d2e] border border-[#3d3d3d] rounded-lg text-[#d4d4d4] placeholder:text-white/15 focus:outline-none focus:border-[#569cd6]/50 transition-colors text-sm font-mono"
                     placeholder='""'
                   />
+                  {errors.email && (
+                    <p className="text-[#f44747] text-xs mt-1">{errors.email}</p>
+                  )}
                 </div>
 
                 <div>
@@ -195,6 +245,7 @@ export default function Contact() {
                   <textarea
                     required
                     rows={4}
+                    maxLength={5000}
                     value={formData.message}
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
@@ -202,6 +253,9 @@ export default function Contact() {
                     className="w-full px-3 py-2 bg-[#2a2d2e] border border-[#3d3d3d] rounded-lg text-[#d4d4d4] placeholder:text-white/15 focus:outline-none focus:border-[#569cd6]/50 transition-colors resize-none text-sm font-mono"
                     placeholder='""'
                   />
+                  {errors.message && (
+                    <p className="text-[#f44747] text-xs mt-1">{errors.message}</p>
+                  )}
                 </div>
               </div>
 
@@ -220,6 +274,8 @@ export default function Contact() {
                     ? "Sending..."
                     : status === "sent"
                     ? "Sent!"
+                    : status === "rate-limited"
+                    ? "Wait 1min..."
                     : "submit()"}
                 </button>
                 <p className="text-[#6a9955] text-xs mt-3">
