@@ -222,6 +222,21 @@ export const projects: Project[] = [
     image: "/img/portfolio.png",
     github: "https://github.com/zaydkassimi/myownportfolio",
   },
+  {
+    title: "AutoLoc",
+    slug: "autoloc",
+    subtitle: "Premium car rental platform",
+    type: "Full-Stack",
+    institution: "",
+    year: "2026",
+    description:
+      "Premium car rental platform for Morocco — online reservation system with a full admin dashboard, agent management, and real-time fleet tracking. Features a beautiful landing page, vehicle catalog with advanced filters, 5-step reservation flow with real-time availability check, PDF invoice generation, and role-based access for clients, agents, and admins.",
+    highlights: ["Next.js 19", "React 19", "TypeScript", "Tailwind CSS 4", "Prisma 7", "PostgreSQL", "Admin Dashboard", "Full Stack"],
+    stack: ["Next.js 19", "React 19", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Prisma 7", "Neon PostgreSQL", "Framer Motion", "Recharts", "jsPDF"],
+    image: "/img/autoloc.png",
+    github: "https://github.com/zaydkassimi/AutoLoc",
+    demo: "https://auto-location.vercel.app",
+  },
 ];
 
 export const education: Education[] = [
