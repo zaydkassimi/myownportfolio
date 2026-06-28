@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, FormEvent, useCallback } from "react";
+import { useState, FormEvent } from "react";
 import { Send, Mail, Phone, MapPin } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { contactInfo } from "@/data/portfolio";
 
-const RATE_LIMIT_MS = 60000; // 1 minute cooldown between submissions
+const RATE_LIMIT_MS = 60000;
+const FORMSUBMIT_URL = "https://formsubmit.co/zaydkassiimi@gmail.com";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -47,25 +48,46 @@ export default function Contact() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
-    // Rate limiting check
+
     const now = Date.now();
     if (now - lastSubmitTime.current < RATE_LIMIT_MS) {
       setStatus("rate-limited");
       setTimeout(() => setStatus("idle"), RATE_LIMIT_MS - (now - lastSubmitTime.current));
       return;
     }
-    
+
     if (!validate()) return;
     setStatus("sending");
     lastSubmitTime.current = now;
-    setTimeout(() => {
-      setStatus("sent");
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1000);
+
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New message from ${formData.name} — Portfolio Contact`,
+          _captcha: "false",
+          _template: "table",
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 4000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   return (
@@ -274,6 +296,8 @@ export default function Contact() {
                     ? "Sending..."
                     : status === "sent"
                     ? "Sent!"
+                    : status === "error"
+                    ? "Error"
                     : status === "rate-limited"
                     ? "Wait 1min..."
                     : "submit()"}
