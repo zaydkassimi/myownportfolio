@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { projects } from "@/data/portfolio";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function BrowserMockup({ children }: { children: React.ReactNode }) {
   return (
@@ -109,16 +109,9 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
 }
 
 export default function ProjectsPage() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    const lenis = (window as unknown as Record<string, unknown>).__lenis;
-    if (lenis && typeof (lenis as { scrollTo: unknown }).scrollTo === "function") {
-      (lenis as { scrollTo: (target: number, opts?: object) => void }).scrollTo(0, { immediate: true });
-    }
-  }, []);
-
   return (
     <div className="min-h-screen relative">
+      <ScrollToTop />
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.35]"
         style={{

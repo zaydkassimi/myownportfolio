@@ -4,6 +4,7 @@ import Link from "next/link";
 import { projects } from "@/data/portfolio";
 import { ArrowLeft, ExternalLink, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/Icons";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -23,6 +24,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="min-h-screen bg-[#f5f5f0]">
+      <ScrollToTop />
       {/* Top nav bar */}
       <nav className="border-b border-[#1a1a1a]/[0.06] bg-[#f5f5f0]/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
