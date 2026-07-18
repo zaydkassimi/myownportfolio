@@ -105,7 +105,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
             {/* VS Code style code block */}
             <div className="mt-10 bg-[#1e1e1e] rounded-xl p-6 font-mono text-[13px] leading-[1.8]">
-              <p className="text-[#6a9955]">// {project.title}</p>
+              <p className="text-[#6a9955]">{"// " + project.title}</p>
               <p>
                 <span className="text-[#569cd6]">const</span>{" "}
                 <span className="text-[#4fc1ff]">project</span>{" "}

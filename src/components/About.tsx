@@ -5,15 +5,24 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { personalInfo, contactInfo } from "@/data/portfolio";
 import GridBackground from "./GridBackground";
+import { Raleway } from "next/font/google";
 
-const skills = [
-  "HTML5", "CSS3", "Sass (SCSS)", "JavaScript (ES6+)", "TypeScript", "React.js", "Next.js", "Vue.js", "Angular",
-  "Redux", "Context API", "Tailwind CSS", "Bootstrap", "Material UI", "Responsive Design", "Web Accessibility (WCAG)",
-  "Progressive Web Apps (PWA)", "PHP", "Laravel", "Node.js", "Express.js", "Python", "Django", "Flask", "Java",
-  "Spring Boot", "REST API Development", "GraphQL", "Authentication & Authorization", "JWT", "OAuth 2.0",
-  "MVC Architecture", "MySQL", "PostgreSQL", "MongoDB", "SQLite", "Redis", "Database Design", "Database Optimization",
-  "Git", "GitHub", "GitLab", "Docker", "Linux", "API Testing", "WordPress", "Scrum", "Object-Oriented Programming (OOP)", "Web Security",
+const raleway = Raleway({
+  variable: "--font-raleway",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const services = [
+  "Web Application Development", "Mobile App Development", "Full-Stack Development",
+  "UI/UX Design", "REST API Development", "Database Design",
+  "Responsive Design", "E-Commerce Solutions", "SaaS Development",
+  "AI Integration", "Dashboard & Analytics", "Version Control & Deployment",
 ];
+
+function ContentLine() {
+  return <div className="w-full h-px bg-[#1a1a1a]/10 my-6" />;
+}
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -22,153 +31,159 @@ export default function About() {
     offset: ["start end", "start center"],
   });
 
-  const bigPhotoOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 1]);
-  const bigPhotoX = useTransform(scrollYProgress, [0, 0.6], [40, 0]);
+  const photo1Opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const photo1X = useTransform(scrollYProgress, [0, 0.5], [-30, 0]);
+  const photo2Opacity = useTransform(scrollYProgress, [0.1, 0.6], [0, 1]);
+  const photo2X = useTransform(scrollYProgress, [0.1, 0.6], [30, 0]);
 
   return (
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-28 md:py-40 overflow-hidden"
+      className="relative py-20 md:py-28 overflow-hidden"
     >
       <GridBackground />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-[11px] text-[#1a1a1a]/30 uppercase tracking-[0.2em] font-medium mb-6"
-        >
-          /About
-        </motion.p>
+      <div className="relative z-10">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-[11px] text-[#1a1a1a]/30 uppercase tracking-[0.2em] font-medium mb-4"
+          >
+            /About
+          </motion.p>
 
-        {/* Editorial grid — matches the reference layout exactly */}
-        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr_1fr] md:grid-rows-[auto_auto] gap-x-8 gap-y-6 items-start">
-
-          {/* Row 1 Col 1: ABOUT ME heading */}
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="font-display text-7xl md:text-8xl lg:text-[130px] font-black tracking-tighter text-[#1a1a1a] leading-[0.85] md:row-span-2 md:self-start"
+            className="font-display text-6xl md:text-8xl lg:text-[120px] font-black tracking-tighter text-[#1a1a1a] leading-[0.85] text-center mb-6"
           >
-            ABOUT
-            <br />
-            ME
+            ABOUT ME
           </motion.h2>
 
-          {/* Row 1 Col 2: Small photo (logo) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative w-full aspect-[4/5] overflow-hidden rounded-xl group cursor-pointer"
-          >
-            <Image
-              src="/img/logo.svg"
-              alt="Logo"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 30vw"
-            />
-          </motion.div>
+          <ContentLine />
 
-          {/* Row 1 Col 3: Text block 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col gap-4"
-          >
-            <p className="text-sm md:text-[15px] text-[#1a1a1a]/45 leading-[1.8]">
-              {personalInfo.about[0]}
-            </p>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1a1a1a]/[0.03] border border-[#1a1a1a]/[0.06] rounded-lg font-mono text-sm whitespace-nowrap self-start">
-              <span className="text-[#1a1a1a]/30">const</span>
-              <span className="text-[#1a1a1a]/60 font-medium">developer</span>
-              <span className="text-[#1a1a1a]/30">=</span>
-              <span className="text-[#1a1a1a]/30">&quot;</span>
-              <span className="text-[#1a1a1a]/60">{contactInfo.location}</span>
-              <span className="text-[#1a1a1a]/30">&quot;</span>
-            </div>
-          </motion.div>
+          {/* Row 1: Photo (left) | vertical line | Who I am (right) */}
+          <div className="grid md:grid-cols-[350px_1px_1fr] gap-8 items-center">
+            <motion.div
+              style={{ opacity: photo1Opacity, x: photo1X }}
+              className="relative w-full aspect-[16/10] overflow-hidden rounded-xl"
+            >
+              <Image
+                src="/img/kassimi zayd.png"
+                alt={personalInfo.name}
+                fill
+                className="object-cover object-[center_20%]"
+                sizes="350px"
+              />
+            </motion.div>
 
-          {/* Row 2 Col 1: Text block 2 */}
+            <div className="hidden md:block w-px self-stretch bg-[#1a1a1a]/10" />
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="flex flex-col gap-3"
+            >
+              <p className={`${raleway.variable} text-base md:text-lg font-semibold text-[#1a1a1a]/80 leading-[1.8]`} style={{ fontFamily: "var(--font-raleway)" }}>
+                {personalInfo.about[0]}
+              </p>
+              <div className={`${raleway.variable} inline-flex items-center gap-2 px-4 py-2 bg-[#1a1a1a]/[0.04] border border-[#1a1a1a]/[0.1] rounded-lg text-sm whitespace-nowrap self-start`} style={{ fontFamily: "var(--font-raleway)" }}>
+                <span className="text-[#1a1a1a]/30">const</span>
+                <span className="text-[#1a1a1a]/60 font-medium">developer</span>
+                <span className="text-[#1a1a1a]/30">=</span>
+                <span className="text-[#1a1a1a]/30">&quot;</span>
+                <span className="text-[#1a1a1a]/60">{contactInfo.location}</span>
+                <span className="text-[#1a1a1a]/30">&quot;</span>
+              </div>
+            </motion.div>
+          </div>
+
+          <ContentLine />
+
+          {/* Row 2: What I do (left) | vertical line | Logo (right) */}
+          <div className="grid md:grid-cols-[1fr_1px_350px] gap-8 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex flex-col gap-4"
+            >
+              <p className={`${raleway.variable} text-base md:text-lg font-semibold text-[#1a1a1a]/80 leading-[1.8]`} style={{ fontFamily: "var(--font-raleway)" }}>
+                {personalInfo.about[1]}
+              </p>
+              <a
+                href="/cv/ZAYD KASSIMI CV.pdf"
+                download
+                className="inline-flex items-center gap-3 px-6 py-3 bg-[#1a1a1a] text-white text-sm font-mono rounded-lg hover:bg-[#1a1a1a]/80 transition-all duration-300 hover:shadow-[0_8px_30px_-6px_rgba(0,0,0,0.3)] self-start"
+              >
+                <span className="text-[#28c840]">$</span>
+                <span>curl --output cv</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </a>
+            </motion.div>
+
+            <div className="hidden md:block w-px self-stretch bg-[#1a1a1a]/10" />
+
+            <motion.div
+              style={{ opacity: photo2Opacity, x: photo2X }}
+              className="relative w-full aspect-[16/10] overflow-hidden rounded-xl"
+            >
+              <Image
+                src="/img/logo.svg"
+                alt="Logo"
+                fill
+                className="object-cover"
+                sizes="350px"
+              />
+            </motion.div>
+          </div>
+
+          <ContentLine />
+
+          {/* Services */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col gap-6"
           >
-            <p className="text-sm md:text-[15px] text-[#1a1a1a]/45 leading-[1.8]">
-              {personalInfo.about[1]}
-            </p>
-            <a
-              href="/cv/ZAYD KASSIMI CV.pdf"
-              download
-              className="group inline-flex items-center gap-3 px-6 py-3 bg-[#1a1a1a] text-white text-sm font-mono rounded-lg hover:bg-[#1a1a1a]/80 transition-all duration-300 hover:shadow-[0_8px_30px_-6px_rgba(0,0,0,0.3)] self-start"
-            >
-              <span className="text-[#28c840]">$</span>
-              <span>curl --output cv</span>
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </a>
-          </motion.div>
-
-          {/* Row 2 Col 2-3: Big profile photo */}
-          <motion.div
-            style={{ opacity: bigPhotoOpacity, x: bigPhotoX }}
-            className="relative w-full aspect-[3/4] overflow-hidden rounded-xl group cursor-pointer md:col-span-2"
-          >
-            <Image
-              src="/img/kassimi zayd.png"
-              alt={personalInfo.name}
-              fill
-              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 66vw"
-            />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]/[0.08]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]/[0.08]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]/[0.08]" />
+              </div>
+              <span className="text-xs font-black uppercase tracking-wider text-[#1a1a1a]/40">WHAT I CAN DO</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {services.map((service, i) => (
+                <motion.span
+                  key={service}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.03 }}
+                  className={`${raleway.variable} inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-[#1a1a1a]/70 bg-[#1a1a1a]/[0.04] border border-[#1a1a1a]/[0.1] rounded-lg hover:bg-[#1a1a1a]/[0.08] hover:border-[#1a1a1a]/[0.15] transition-all cursor-default`}
+                  style={{ fontFamily: "var(--font-raleway)" }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a]/25" />
+                  {service}
+                </motion.span>
+              ))}
+            </div>
           </motion.div>
         </div>
-
-        {/* Skills */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 md:mt-24"
-        >
-          <div className="flex items-center gap-3 mb-5">
-            <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]/[0.08]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]/[0.08]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]/[0.08]" />
-            </div>
-            <span className="text-xs font-black uppercase tracking-wider text-[#1a1a1a]/40">SKILLS</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {skills.map((skill, i) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.02 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#1a1a1a]/60 bg-[#1a1a1a]/[0.03] border border-[#1a1a1a]/[0.06] rounded-lg hover:bg-[#1a1a1a]/[0.06] hover:border-[#1a1a1a]/[0.1] transition-all cursor-default"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a]/15" />
-                {skill}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

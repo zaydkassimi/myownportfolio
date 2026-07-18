@@ -74,7 +74,7 @@ export default function Projects() {
                 </BrowserMockup>
 
                 <div className="mt-0 bg-[#1e1e1e] rounded-b-xl p-5 font-mono text-[13px] leading-[1.8] flex-1">
-                  <p className="text-[#6a9955]">// {project.title}</p>
+                  <p className="text-[#6a9955]">{"// " + project.title}</p>
                   <p>
                     <span className="text-[#569cd6]">const</span>{" "}
                     <span className="text-[#4fc1ff]">project</span>{" "}

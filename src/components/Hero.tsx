@@ -154,7 +154,7 @@ export default function Hero() {
             </p>
             <div className="hidden md:block w-36" />
             <p className="text-xs md:text-sm text-[#1a1a1a]/50 font-medium tracking-wider uppercase">
-              /Creating since 2023
+              /Creating since 2026
             </p>
           </div>
         </motion.div>
