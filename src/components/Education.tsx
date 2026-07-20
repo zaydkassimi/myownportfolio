@@ -32,15 +32,15 @@ function HandwrittenItem({
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <div ref={ref} className="relative mb-16 last:mb-0">
+    <div ref={ref} className="relative mb-12 md:mb-16 last:mb-0">
       {/* Pencil drawing the line */}
       <motion.div
         initial={{ x: -60, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : { x: -60, opacity: 0 }}
         transition={{ duration: 0.6, delay: index * 0.3 }}
-        className="flex items-center gap-4 mb-4"
+        className="flex items-center gap-3 md:gap-4 mb-4"
       >
-        <PencilIcon className="w-5 h-5 text-neutral-400 rotate-[-45deg] shrink-0" />
+        <PencilIcon className="w-4 h-4 md:w-5 md:h-5 text-neutral-400 rotate-[-45deg] shrink-0" />
         <motion.div
           initial={{ width: 0 }}
           animate={isInView ? { width: "100%" } : { width: 0 }}
@@ -54,9 +54,9 @@ function HandwrittenItem({
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.5, delay: index * 0.3 + 0.3 }}
-        className="ml-12"
+        className="ml-8 md:ml-12"
       >
-        <span className="text-[13px] font-bold text-[#1a1a1a]/40 uppercase tracking-widest">
+        <span className="text-[12px] md:text-[13px] font-bold text-[#1a1a1a]/40 uppercase tracking-widest">
           {edu.period}
         </span>
       </motion.div>
@@ -70,12 +70,12 @@ function HandwrittenItem({
             : { opacity: 0, y: 20, filter: "blur(4px)" }
         }
         transition={{ duration: 0.6, delay: index * 0.3 + 0.4 }}
-        className="ml-12"
+        className="ml-8 md:ml-12"
       >
-        <h3 className="font-display text-3xl md:text-4xl lg:text-5xl font-black text-[#1a1a1a] tracking-tight mb-2 leading-tight">
+        <h3 className="font-display text-2xl md:text-4xl lg:text-5xl font-black text-[#1a1a1a] tracking-tight mb-2 leading-tight">
           {edu.degree}
         </h3>
-        <p className="text-base md:text-lg text-[#1a1a1a]/45 font-medium">
+        <p className="text-sm md:text-lg text-[#1a1a1a]/45 font-medium">
           {edu.institution}
         </p>
         {edu.description && (
@@ -95,7 +95,7 @@ function HandwrittenItem({
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : { scale: 0 }}
         transition={{ duration: 0.3, delay: index * 0.3 + 0.8 }}
-        className="absolute left-0 top-0 w-2.5 h-2.5 rounded-full bg-[#1a1a1a] ml-[-4px]"
+        className="absolute left-0 top-0 w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#1a1a1a] ml-[-4px]"
       />
     </div>
   );
@@ -105,7 +105,7 @@ export default function Education() {
   const reversed = [...education].reverse();
 
   return (
-    <section id="education" className="relative py-28 md:py-40">
+    <section id="education" className="relative py-20 md:py-40">
       {/* Wall background */}
       <div className="absolute inset-0 bg-[#f5f5f0]" />
       <div
@@ -115,7 +115,7 @@ export default function Education() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1000px] mx-auto px-6 md:px-10">
+      <div className="relative z-10 max-w-[1000px] mx-auto px-5 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +126,7 @@ export default function Education() {
           <p className="text-[11px] text-[#1a1a1a]/30 uppercase tracking-[0.2em] font-medium mb-4">
             /Education
           </p>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-[#1a1a1a]">
+          <h2 className="font-display text-3xl md:text-6xl lg:text-7xl font-black tracking-tight text-[#1a1a1a]">
             Education
           </h2>
         </motion.div>

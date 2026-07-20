@@ -147,13 +147,13 @@ export default function Hero() {
         </div>
 
         {/* Bottom bar */}
-        <motion.div style={{ opacity: bottomOpacity }} className="px-6 md:px-10 pb-8">
+        <motion.div style={{ opacity: bottomOpacity }} className="px-6 md:px-10 pb-6 md:pb-8">
           <div className="flex items-center justify-between max-w-5xl mx-auto">
-            <p className="font-display text-lg md:text-xl font-bold text-[#1a1a1a]">
+            <p className="font-display text-base md:text-xl font-bold text-[#1a1a1a]">
               ©{new Date().getFullYear()}
             </p>
             <div className="hidden md:block w-36" />
-            <p className="text-xs md:text-sm text-[#1a1a1a]/50 font-medium tracking-wider uppercase">
+            <p className="text-[10px] md:text-sm text-[#1a1a1a]/50 font-medium tracking-wider uppercase">
               /Creating since 2026
             </p>
           </div>

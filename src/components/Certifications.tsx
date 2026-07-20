@@ -17,9 +17,9 @@ function CertCard({ cert, index }: { cert: (typeof certifications)[0]; index: nu
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <div className="relative bg-white rounded-2xl border border-[#1a1a1a]/[0.06] overflow-hidden hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
+      <div className="relative bg-white rounded-xl md:rounded-2xl border border-[#1a1a1a]/[0.06] overflow-hidden hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
         {/* Fixed image area */}
-        <div className="relative w-full h-[280px] bg-[#e8e8e8] flex items-center justify-center overflow-hidden shrink-0 p-5">
+        <div className="relative w-full aspect-[4/3] bg-[#e8e8e8] flex items-center justify-center overflow-hidden shrink-0 p-3 md:p-5">
           <div className="relative w-full h-full rounded-lg overflow-hidden shadow-[0_2px_10px_-2px_rgba(0,0,0,0.15)]">
             {cert.image ? (
               <Image
@@ -35,15 +35,15 @@ function CertCard({ cert, index }: { cert: (typeof certifications)[0]; index: nu
         </div>
 
         {/* Fixed text area */}
-        <div className="p-4 flex flex-col flex-1">
-          <h3 className="font-display text-sm font-bold text-[#1a1a1a] leading-tight mb-1 line-clamp-2">
+        <div className="p-3 md:p-4 flex flex-col flex-1">
+          <h3 className="text-[13px] md:text-sm font-bold text-[#1a1a1a] leading-tight mb-1 line-clamp-2">
             {cert.title}
           </h3>
-          <div className="flex items-center justify-between mt-auto">
-            <p className="text-[11px] text-[#1a1a1a]/35 truncate mr-2">
+          <div className="flex items-center justify-between mt-auto gap-2">
+            <p className="text-[10px] md:text-[11px] text-[#1a1a1a]/35 truncate">
               {cert.provider}
             </p>
-            <span className="shrink-0 text-[10px] font-bold text-[#1a1a1a]/25 bg-[#1a1a1a]/[0.04] px-2 py-0.5 rounded-full">
+            <span className="shrink-0 text-[9px] md:text-[10px] font-bold text-[#1a1a1a]/25 bg-[#1a1a1a]/[0.04] px-2 py-0.5 rounded-full">
               {cert.year}
             </span>
           </div>
@@ -55,7 +55,7 @@ function CertCard({ cert, index }: { cert: (typeof certifications)[0]; index: nu
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="relative py-24 md:py-32">
+    <section id="certifications" className="relative py-16 md:py-32">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -65,23 +65,23 @@ export default function Certifications() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-10 md:mb-16"
         >
           <p className="text-[11px] text-[#1a1a1a]/30 uppercase tracking-[0.2em] font-medium mb-4">
             /Certifications
           </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a]">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a]">
             Certifications
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
           {certifications.map((cert, i) => (
             <CertCard key={cert.title} cert={cert} index={i} />
           ))}

@@ -27,7 +27,7 @@ function BrowserMockup({ children }: { children: React.ReactNode }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-24 md:py-32">
+    <section id="projects" className="relative py-16 md:py-32">
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.35]"
         style={{
@@ -37,19 +37,19 @@ export default function Projects() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-10">
         <ScrollAnimation>
-          <div className="mb-16">
+          <div className="mb-10 md:mb-16">
             <p className="text-[11px] text-[#1a1a1a]/30 uppercase tracking-[0.2em] font-medium mb-4">
               /Projects
             </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a]">
+            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a]">
               Featured Work
             </h2>
           </div>
         </ScrollAnimation>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12 items-stretch">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12 items-stretch">
           {projects.slice(0, 2).map((project, i) => (
             <ScrollAnimation key={project.title} delay={i * 0.15}>
               <Link href={`/projects/${project.slug}`} className="group cursor-pointer flex flex-col h-full block">
@@ -73,7 +73,7 @@ export default function Projects() {
                   )}
                 </BrowserMockup>
 
-                <div className="mt-0 bg-[#1e1e1e] rounded-b-xl p-5 font-mono text-[13px] leading-[1.8] flex-1">
+                <div className="mt-0 bg-[#1e1e1e] rounded-b-xl p-3.5 md:p-5 font-mono text-[11px] md:text-[13px] leading-[1.8] flex-1 overflow-x-auto">
                   <p className="text-[#6a9955]">{"// " + project.title}</p>
                   <p>
                     <span className="text-[#569cd6]">const</span>{" "}

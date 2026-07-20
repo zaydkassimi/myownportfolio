@@ -53,7 +53,7 @@ function TechCard({ cat, index }: { cat: (typeof techstack)[0]; index: number })
       initial={{ opacity: 0, y: 25 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="bg-white/60 backdrop-blur-sm rounded-2xl border border-[#1a1a1a]/[0.06] p-6 hover:bg-white hover:shadow-[0_4px_20px_-6px_rgba(0,0,0,0.06)] transition-all duration-300"
+      className="bg-white/60 backdrop-blur-sm rounded-2xl border border-[#1a1a1a]/[0.06] p-4 md:p-6 hover:bg-white hover:shadow-[0_4px_20px_-6px_rgba(0,0,0,0.06)] transition-all duration-300"
     >
       <div className="flex items-center gap-3 mb-5">
         <div className="w-8 h-8 rounded-lg bg-[#1a1a1a]/[0.04] flex items-center justify-center">
@@ -94,7 +94,7 @@ function TechCard({ cat, index }: { cat: (typeof techstack)[0]; index: number })
 
 export default function Techstack() {
   return (
-    <section id="techstack" className="relative py-24 md:py-32">
+    <section id="techstack" className="relative py-16 md:py-32">
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.3]"
         style={{
@@ -104,18 +104,18 @@ export default function Techstack() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-10 md:mb-16"
         >
           <p className="text-[11px] text-[#1a1a1a]/30 uppercase tracking-[0.2em] font-medium mb-4">
             /Tech Stack
           </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a]">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a]">
             Technologies
           </h2>
         </motion.div>

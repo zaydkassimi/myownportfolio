@@ -40,12 +40,12 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-20 md:py-28 overflow-hidden"
+      className="relative py-16 md:py-28 overflow-hidden"
     >
       <GridBackground />
 
       <div className="relative z-10">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto px-5 md:px-10">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -61,7 +61,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="font-display text-6xl md:text-8xl lg:text-[120px] font-black tracking-tighter text-[#1a1a1a] leading-[0.85] text-center mb-6"
+            className="font-display text-4xl md:text-8xl lg:text-[120px] font-black tracking-tighter text-[#1a1a1a] leading-[0.85] text-center mb-6"
           >
             ABOUT ME
           </motion.h2>
@@ -69,7 +69,7 @@ export default function About() {
           <ContentLine />
 
           {/* Row 1: Photo (left) | vertical line | Who I am (right) */}
-          <div className="grid md:grid-cols-[350px_1px_1fr] gap-8 items-center">
+          <div className="grid md:grid-cols-[350px_1px_1fr] gap-6 md:gap-8 items-center">
             <motion.div
               style={{ opacity: photo1Opacity, x: photo1X }}
               className="relative w-full aspect-[16/10] overflow-hidden rounded-xl"
@@ -79,7 +79,7 @@ export default function About() {
                 alt={personalInfo.name}
                 fill
                 className="object-cover object-[center_20%]"
-                sizes="350px"
+                sizes="(max-width: 768px) 100vw, 350px"
               />
             </motion.div>
 
@@ -92,7 +92,7 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.15 }}
               className="flex flex-col gap-3"
             >
-              <p className={`${raleway.variable} text-base md:text-lg font-semibold text-[#1a1a1a]/80 leading-[1.8]`} style={{ fontFamily: "var(--font-raleway)" }}>
+              <p className={`${raleway.variable} text-[15px] md:text-lg font-semibold text-[#1a1a1a]/80 leading-[1.8]`} style={{ fontFamily: "var(--font-raleway)" }}>
                 {personalInfo.about[0]}
               </p>
               <div className={`${raleway.variable} inline-flex items-center gap-2 px-4 py-2 bg-[#1a1a1a]/[0.04] border border-[#1a1a1a]/[0.1] rounded-lg text-sm whitespace-nowrap self-start`} style={{ fontFamily: "var(--font-raleway)" }}>
@@ -109,7 +109,7 @@ export default function About() {
           <ContentLine />
 
           {/* Row 2: What I do (left) | vertical line | Logo (right) */}
-          <div className="grid md:grid-cols-[1fr_1px_350px] gap-8 items-center">
+          <div className="grid md:grid-cols-[1fr_1px_350px] gap-6 md:gap-8 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -117,13 +117,13 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col gap-4"
             >
-              <p className={`${raleway.variable} text-base md:text-lg font-semibold text-[#1a1a1a]/80 leading-[1.8]`} style={{ fontFamily: "var(--font-raleway)" }}>
+              <p className={`${raleway.variable} text-[15px] md:text-lg font-semibold text-[#1a1a1a]/80 leading-[1.8]`} style={{ fontFamily: "var(--font-raleway)" }}>
                 {personalInfo.about[1]}
               </p>
               <a
                 href="/cv/ZAYD KASSIMI CV.pdf"
                 download
-                className="inline-flex items-center gap-3 px-6 py-3 bg-[#1a1a1a] text-white text-sm font-mono rounded-lg hover:bg-[#1a1a1a]/80 transition-all duration-300 hover:shadow-[0_8px_30px_-6px_rgba(0,0,0,0.3)] self-start"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-white text-sm font-mono rounded-lg hover:bg-[#1a1a1a]/80 transition-all duration-300 hover:shadow-[0_8px_30px_-6px_rgba(0,0,0,0.3)] self-start md:gap-3 md:px-6 md:py-3"
               >
                 <span className="text-[#28c840]">$</span>
                 <span>curl --output cv</span>
@@ -137,14 +137,14 @@ export default function About() {
 
             <motion.div
               style={{ opacity: photo2Opacity, x: photo2X }}
-              className="relative w-full aspect-[16/10] overflow-hidden rounded-xl"
+              className="relative w-full aspect-[16/10] overflow-hidden rounded-xl order-first md:order-last"
             >
               <Image
                 src="/img/logo.svg"
                 alt="Logo"
                 fill
                 className="object-cover"
-                sizes="350px"
+                sizes="(max-width: 768px) 100vw, 350px"
               />
             </motion.div>
           </div>
@@ -164,9 +164,9 @@ export default function About() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]/[0.08]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a]/[0.08]" />
               </div>
-              <span className="text-xs font-black uppercase tracking-wider text-[#1a1a1a]/40">WHAT I CAN DO</span>
+              <span className="text-[10px] md:text-xs font-black uppercase tracking-wider text-[#1a1a1a]/40">WHAT I CAN DO</span>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 md:gap-2">
               {services.map((service, i) => (
                 <motion.span
                   key={service}
@@ -174,7 +174,7 @@ export default function About() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.03 }}
-                  className={`${raleway.variable} inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-[#1a1a1a]/70 bg-[#1a1a1a]/[0.04] border border-[#1a1a1a]/[0.1] rounded-lg hover:bg-[#1a1a1a]/[0.08] hover:border-[#1a1a1a]/[0.15] transition-all cursor-default`}
+                  className={`${raleway.variable} inline-flex items-center gap-1.5 px-3 py-1.5 text-xs md:text-sm font-semibold text-[#1a1a1a]/70 bg-[#1a1a1a]/[0.04] border border-[#1a1a1a]/[0.1] rounded-lg hover:bg-[#1a1a1a]/[0.08] hover:border-[#1a1a1a]/[0.15] transition-all cursor-default md:px-4 md:py-2`}
                   style={{ fontFamily: "var(--font-raleway)" }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a]/25" />

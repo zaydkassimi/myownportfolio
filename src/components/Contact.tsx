@@ -91,7 +91,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 md:py-32">
+    <section id="contact" className="relative py-16 md:py-32">
       {/* Dot background */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.3]"
@@ -102,29 +102,29 @@ export default function Contact() {
         }}
       />
 
-      <div ref={ref} className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10">
+      <div ref={ref} className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-10 md:mb-16"
         >
           <p className="text-[11px] text-[#1a1a1a]/30 uppercase tracking-[0.2em] font-medium mb-4">
             /Contact
           </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a]">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#1a1a1a]">
             Let&apos;s talk.
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-20">
           {/* Left: Info cards */}
           <div className="space-y-6">
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-lg text-[#1a1a1a]/50 leading-[1.8] max-w-[400px]"
+              className="text-base md:text-lg text-[#1a1a1a]/50 leading-[1.8] max-w-[400px]"
             >
               Have a project or need help? Fill out the form and I&apos;ll get
               back to you soon.
@@ -134,7 +134,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 15 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white/60 backdrop-blur-sm rounded-2xl border border-[#1a1a1a]/[0.06] p-6 space-y-5"
+              className="bg-white/60 backdrop-blur-sm rounded-2xl border border-[#1a1a1a]/[0.06] p-4 md:p-6 space-y-4 md:space-y-5"
             >
               <a
                 href={`mailto:${contactInfo.email}`}
@@ -147,7 +147,7 @@ export default function Contact() {
                   <p className="text-[10px] text-[#1a1a1a]/25 uppercase tracking-wider mb-0.5">
                     Email
                   </p>
-                  <p className="text-sm font-medium text-[#1a1a1a]/70 group-hover:text-[#1a1a1a] transition-colors">
+                  <p className="text-xs md:text-sm font-medium text-[#1a1a1a]/70 group-hover:text-[#1a1a1a] transition-colors truncate">
                     {contactInfo.email}
                   </p>
                 </div>
@@ -164,7 +164,7 @@ export default function Contact() {
                   <p className="text-[10px] text-[#1a1a1a]/25 uppercase tracking-wider mb-0.5">
                     Phone
                   </p>
-                  <p className="text-sm font-medium text-[#1a1a1a]/70 group-hover:text-[#1a1a1a] transition-colors">
+                  <p className="text-xs md:text-sm font-medium text-[#1a1a1a]/70 group-hover:text-[#1a1a1a] transition-colors">
                     {contactInfo.phone}
                   </p>
                 </div>
@@ -178,7 +178,7 @@ export default function Contact() {
                   <p className="text-[10px] text-[#1a1a1a]/25 uppercase tracking-wider mb-0.5">
                     Location
                   </p>
-                  <p className="text-sm font-medium text-[#1a1a1a]/70">
+                  <p className="text-xs md:text-sm font-medium text-[#1a1a1a]/70">
                     {contactInfo.location}
                   </p>
                 </div>
@@ -206,7 +206,7 @@ export default function Contact() {
             </div>
 
             {/* Code content */}
-            <form onSubmit={handleSubmit} className="p-6 font-mono text-sm">
+            <form onSubmit={handleSubmit} className="p-4 md:p-6 font-mono text-sm">
               <div className="space-y-4">
                 <div>
                   <p className="text-[#569cd6] mb-1.5">
