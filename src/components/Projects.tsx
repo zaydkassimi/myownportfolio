@@ -73,7 +73,7 @@ export default function Projects() {
                   )}
                 </BrowserMockup>
 
-                <div className="mt-0 bg-white border border-black/[0.08] rounded-b-xl p-3.5 md:p-5 font-mono text-[11px] md:text-[13px] leading-[1.8] flex-1 overflow-x-auto">
+                <div className="mt-0 bg-white border border-black/[0.08] border-t-0 p-3.5 md:p-5 font-mono text-[11px] md:text-[13px] leading-[1.8] flex-1 overflow-x-auto">
                   <p className="text-[#008000]">{"// " + project.title}</p>
                   <p>
                     <span className="text-[#0000ff]">const</span>{" "}
