@@ -14,7 +14,7 @@ const words = [
   "INNOVATOR",
 ];
 
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*<>{}[]";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 function ScrambleText() {
   const [index, setIndex] = useState(0);
@@ -23,7 +23,6 @@ function ScrambleText() {
 
   const scramble = useCallback(() => {
     const target = words[index];
-    const maxLen = Math.max(target.length, 12);
     let iteration = 0;
     const totalIterations = target.length * 3;
     setIsScrambling(true);
@@ -34,10 +33,10 @@ function ScrambleText() {
           .split("")
           .map((char, i) => {
             if (i < iteration / 3) return char;
+            if (char === " ") return " ";
             return chars[Math.floor(Math.random() * chars.length)];
           })
           .join("")
-          .padEnd(maxLen, " ")
       );
 
       iteration++;
@@ -52,6 +51,13 @@ function ScrambleText() {
   }, [index]);
 
   useEffect(() => {
+    if (index === 0) {
+      const nextTimeout = setTimeout(() => {
+        setIndex(1);
+      }, 4000);
+      return () => clearTimeout(nextTimeout);
+    }
+
     const timeout = setTimeout(() => {
       const cleanup = scramble();
       const nextTimeout = setTimeout(() => {
@@ -67,8 +73,13 @@ function ScrambleText() {
   }, [index, scramble]);
 
   return (
-    <span className="inline-block min-w-[4ch] text-left">
-      {displayText}
+    <span className="inline-block min-w-[4ch] text-center">
+      {displayText.split(" ").map((word, i, arr) => (
+        <span key={i}>
+          {word}
+          {i < arr.length - 1 && <br />}
+        </span>
+      ))}
       <span className={`inline-block w-[3px] h-[0.85em] bg-[#1a1a1a] ml-1 align-middle ${isScrambling ? "animate-pulse" : "animate-[blink_1s_infinite]"}`} />
     </span>
   );
@@ -117,9 +128,9 @@ export default function Hero() {
             initial={{ opacity: 0, rotate: -20 }}
             animate={{ opacity: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="absolute top-[22%] left-[18%] hidden md:block"
+            className="absolute top-[22%] left-[8%] md:left-[18%]"
           >
-            <Sparkle className="w-16 h-16 text-[#1a1a1a]" />
+            <Sparkle className="w-10 h-10 md:w-16 md:h-16 text-[#1a1a1a]" />
           </motion.div>
 
           {/* Sparkle bottom-right */}
@@ -127,7 +138,7 @@ export default function Hero() {
             initial={{ opacity: 0, rotate: 20 }}
             animate={{ opacity: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="absolute bottom-[30%] right-[15%] hidden md:block"
+            className="absolute bottom-[30%] right-[5%] md:right-[15%]"
           >
             <SparkleCorner className="w-14 h-14 text-[#1a1a1a]" />
           </motion.div>
@@ -137,10 +148,10 @@ export default function Hero() {
             style={{ opacity: titleOpacity, y: titleY }}
             className="text-center"
           >
-            <h1 className="font-display text-[clamp(3.5rem,12vw,10rem)] font-black leading-[0.85] tracking-[-0.03em] uppercase text-[#1a1a1a]">
+            <h1 className="font-display text-[clamp(2rem,10vw,10rem)] font-black leading-[0.85] tracking-[-0.03em] uppercase text-[#1a1a1a]">
               Software
             </h1>
-            <h1 className="font-display text-[clamp(3.5rem,12vw,10rem)] font-black leading-[0.85] tracking-[-0.03em] uppercase text-[#1a1a1a]">
+            <h1 className="font-display text-[clamp(1.8rem,9vw,10rem)] font-black leading-[0.85] tracking-[-0.03em] uppercase text-[#1a1a1a]">
               <ScrambleText />
             </h1>
           </motion.div>

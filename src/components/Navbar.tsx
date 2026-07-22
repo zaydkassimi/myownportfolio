@@ -48,18 +48,20 @@ export default function Navbar() {
       {/* Mobile: fixed pill at top center */}
       {!isOpen && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 md:hidden">
-          <motion.button
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            className="bg-[#1a1a1a] rounded-full pl-5 pr-5 py-2 shadow-xl cursor-pointer"
-            onClick={() => setIsOpen(true)}
           >
-            <span className="font-display text-white text-[18px] font-black tracking-tight uppercase">
-              {personalInfo.name.split(" ")[0]}
-            </span>
-          </motion.button>
+            <button
+              className="bg-[#1a1a1a] rounded-full pl-5 pr-5 py-2 shadow-xl cursor-pointer"
+              onClick={() => setIsOpen(true)}
+            >
+              <span className="font-display text-white text-[18px] font-black tracking-tight uppercase">
+                {personalInfo.name.split(" ")[0]}
+              </span>
+            </button>
+          </motion.div>
         </div>
       )}
 
