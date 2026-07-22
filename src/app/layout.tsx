@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Archivo, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import LoadingScreen from "@/components/LoadingScreen";
 import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
@@ -72,6 +73,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col antialiased grain-bg">
+        <LoadingScreen />
         <SmoothScroll>{children}</SmoothScroll>
         <Analytics />
       </body>
