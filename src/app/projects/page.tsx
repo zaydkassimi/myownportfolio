@@ -9,7 +9,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 function BrowserMockup({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-white rounded-xl shadow-[0_2px_20px_-6px_rgba(0,0,0,0.08)] overflow-hidden border border-black/[0.04]">
+    <div className="bg-white rounded-t-xl shadow-[0_2px_20px_-6px_rgba(0,0,0,0.08)] overflow-hidden border border-black/[0.04]">
       <div className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 bg-[#fafafa] border-b border-black/[0.04]">
         <div className="flex gap-1.5">
           <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ff5f57]" />
@@ -55,52 +55,52 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         )}
       </BrowserMockup>
 
-      <div className="bg-white border border-black/[0.08] border-t-0 p-3.5 md:p-5 font-mono text-[11px] md:text-[13px] leading-[1.8] flex-1 overflow-x-auto">
-        <p className="text-[#008000]">{"// " + project.title}</p>
+      <div className="bg-[#1e1e1e] rounded-b-xl p-3.5 md:p-5 font-mono text-[11px] md:text-[13px] leading-[1.8] flex-1 overflow-x-auto">
+        <p className="text-[#6a9955]">{"// " + project.title}</p>
         <p>
-          <span className="text-[#0000ff]">const</span>{" "}
-          <span className="text-[#0070c1]">project</span>{" "}
-          <span className="text-[#000000]">{"="}</span>{" "}
-          <span className="text-[#000000]">{"{"}</span>
+          <span className="text-[#569cd6]">const</span>{" "}
+          <span className="text-[#4fc1ff]">project</span>{" "}
+          <span className="text-white">{"="}</span>{" "}
+          <span className="text-white">{"{"}</span>
         </p>
         <p className="pl-4">
-          <span className="text-[#001080]">type</span>
-          <span className="text-[#000000]">: </span>
-          <span className="text-[#a31515]">&quot;{project.type}&quot;</span>
-          <span className="text-[#000000]">,</span>
+          <span className="text-[#9cdcfe]">type</span>
+          <span className="text-white">: </span>
+          <span className="text-[#ce9178]">&quot;{project.type}&quot;</span>
+          <span className="text-white">,</span>
         </p>
         <p className="pl-4">
-          <span className="text-[#001080]">year</span>
-          <span className="text-[#000000]">: </span>
-          <span className="text-[#098658]">{project.year}</span>
-          <span className="text-[#000000]">,</span>
+          <span className="text-[#9cdcfe]">year</span>
+          <span className="text-white">: </span>
+          <span className="text-[#b5cea8]">{project.year}</span>
+          <span className="text-white">,</span>
         </p>
         <p className="pl-4">
-          <span className="text-[#001080]">description</span>
-          <span className="text-[#000000]">: </span>
-          <span className="text-[#a31515]">&quot;{project.description}&quot;</span>
+          <span className="text-[#9cdcfe]">description</span>
+          <span className="text-white">: </span>
+          <span className="text-[#ce9178]">&quot;{project.description}&quot;</span>
         </p>
         <p>
-          <span className="text-[#000000]">{"}"}</span>
-          <span className="text-[#000000]">;</span>
+          <span className="text-white">{"}"}</span>
+          <span className="text-white">;</span>
         </p>
         <p className="mt-2">
-          <span className="text-[#0000ff]">const</span>{" "}
-          <span className="text-[#0070c1]">stack</span>{" "}
-          <span className="text-[#000000]">{"="}</span>{" "}
-          <span className="text-[#000000]">[</span>
+          <span className="text-[#569cd6]">const</span>{" "}
+          <span className="text-[#4fc1ff]">stack</span>{" "}
+          <span className="text-white">{"="}</span>{" "}
+          <span className="text-white">[</span>
         </p>
         <p className="pl-4">
           {project.stack.map((tech, j) => (
             <span key={tech}>
-              <span className="text-[#a31515]">&quot;{tech}&quot;</span>
-              {j < project.stack.length - 1 && <span className="text-[#000000]">, </span>}
+              <span className="text-[#ce9178]">&quot;{tech}&quot;</span>
+              {j < project.stack.length - 1 && <span className="text-white">, </span>}
             </span>
           ))}
         </p>
         <p>
-          <span className="text-[#000000]">]</span>
-          <span className="text-[#000000]">;</span>
+          <span className="text-white">]</span>
+          <span className="text-white">;</span>
         </p>
       </div>
       </Link>
