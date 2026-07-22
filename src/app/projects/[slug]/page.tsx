@@ -73,7 +73,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         {/* Browser mockup preview */}
         {project.image && (
           <div className="mb-10 md:mb-16">
-            <div className="bg-white rounded-xl shadow-[0_2px_30px_-6px_rgba(0,0,0,0.1)] overflow-hidden border border-black/[0.04]">
+            <div className="bg-white rounded-t-xl shadow-[0_2px_30px_-6px_rgba(0,0,0,0.1)] overflow-hidden border border-black/[0.04]">
               <div className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 bg-[#fafafa] border-b border-black/[0.04]">
                 <div className="flex gap-1.5">
                   <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ff5f57]" />
